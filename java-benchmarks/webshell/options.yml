@@ -1,0 +1,26 @@
+optionsFile: null
+printHelp: false
+classPath: []
+appClassPath:
+- java-benchmarks/main
+- java-benchmarks/webshell
+- java-benchmarks/webshell/tomcat-embed-core-9.0.36.jar
+- java-benchmarks/webshell/tomcat-embed-jasper-9.0.36.jar
+- java-benchmarks/webshell/tomcat-embed-el-9.0.36.jar
+mainClass: MainEntry
+inputClasses: [org.apache.jsp.java_002dbenchmarks.webshell._0x00_jsp,javax.servlet.http.HttpServletRequestWrapper,javax.servlet.http.HttpServletResponseWrapper]
+javaVersion: 8
+prependJVM: false
+allowPhantom: true
+worldBuilderClass: pascal.taie.frontend.soot.SootWorldBuilder
+outputDir: output
+preBuildIR: false
+worldCacheMode: false
+scope: APP
+nativeModel: true
+planFile: null
+analyses:
+  pta: cs:ci;implicit-entries:false;distinguish-string-constants:null;reflection-inference:solar;taint-config:java-benchmarks/webshell/taint-config.yml;plugins:[org.example.CustomEntryPointPlugin]; #dump-ci:true;
+onlyGenPlan: false
+keepResult:
+- $KEEP-ALL

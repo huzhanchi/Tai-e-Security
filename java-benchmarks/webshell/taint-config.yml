@@ -1,0 +1,28 @@
+sources:
+  - { kind: call, method: "<javax.servlet.ServletRequest: java.lang.String getParameter(java.lang.String)>", index: result,type: "java.lang.String" }
+  - { kind: call, method: "<javax.servlet.http.HttpServletRequestWrapper: java.lang.String getParameter(java.lang.String)>", index: result,type: "java.lang.String" }
+  - { kind: call, method: "<javax.servlet.http.HttpServletRequest: java.lang.String getParameter(java.lang.String)>", index: result, type: "java.lang.String" }
+  - { kind: call, method: "<javax.servlet.ServletRequestWrapper: java.lang.String getParameter(java.lang.String)>", index: result, type: "java.lang.String" }
+
+sinks:
+  - { method: "<java.lang.Runtime: java.lang.Process exec(java.lang.String)>", index: 0 }
+  - { method: "<java.lang.Runtime: java.lang.Process exec(java.lang.String[])>", index: 0 }
+  - { method: "<java.lang.Runtime: java.lang.Process exec(java.lang.String,java.lang.String[])>", index: 0 }
+  - { method: "<java.lang.Runtime: java.lang.Process exec(java.lang.String,java.lang.String[])>", index: 1 }
+  - { method: "<java.lang.Runtime: java.lang.Process exec(java.lang.String[],java.lang.String[])>", index: 0 }
+  - { method: "<java.lang.Runtime: java.lang.Process exec(java.lang.String[],java.lang.String[])>", index: 1 }
+  - { method: "<java.lang.Runtime: java.lang.Process exec(java.lang.String,java.lang.String[],java.io.File)>", index: 1 }
+  - { method: "<java.lang.Runtime: java.lang.Process exec(java.lang.String,java.lang.String[],java.io.File)>", index: 2 }
+  - { method: "<java.lang.Runtime: java.lang.Process exec(java.lang.String[],java.lang.String[],java.io.File)>", index: 1 }
+  - { method: "<java.lang.Runtime: java.lang.Process exec(java.lang.String[],java.lang.String[],java.io.File)>", index: 2 }
+  - { method: "<java.lang.ProcessBuilder: void <init>(java.lang.String[])>", index: 0 }
+  - { method: "<java.lang.ProcessBuilder: void <init>(java.util.List)>", index: 0 }
+  - { method: "<java.lang.ProcessBuilder: java.lang.ProcessBuilder command(java.lang.String[])>", index: 0 }
+  - { method: "<java.lang.ProcessBuilder: java.lang.ProcessBuilder command(java.util.List)>", index: 0 }
+
+transfers:
+  - { method: "<java.lang.StringBuilder: void <init>(java.lang.String)>", from: 0, to: base }
+  - { method: "<java.lang.StringBuilder: java.lang.String substring(int,int)>", from: base, to: result }
+  - { method: "<java.lang.StringBuilder: void getChars(int,int,char[],int)>", from: base, to: 2 }
+  - { method: "<java.lang.String: java.lang.String substring(int)>", from: base, to: result }
+  - { method: "<java.lang.String: void <init>(char[],int,int)>", from: 0, to: base }
