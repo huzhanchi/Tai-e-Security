@@ -64,7 +64,6 @@ public class CustomEntryPointPlugin implements Plugin {
                 .addParamObj(1, p1);
         solver.addEntryPoint(new EntryPoint(entryMethod, paramProviderBuilder.build()));
 //
-//
 //        // mock obj
 //        JClass requestWrapper = hierarchy.getClass("javax.servlet.http.HttpServletRequestWrapper");
 //        JClass responseWrapper = hierarchy.getClass("javax.servlet.http.HttpServletResponseWrapper");

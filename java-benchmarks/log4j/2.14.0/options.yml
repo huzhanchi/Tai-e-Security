@@ -19,7 +19,7 @@ scope: APP
 nativeModel: true
 planFile: null
 analyses:
-  pta: cs:ci;implicit-entries:false;distinguish-string-constants:null;reflection-inference:solar;taint-config:java-benchmarks/log4j/2.14.0/taint-config.yml;plugins:[org.example.CustomEntryPointPlugin]; #dump-ci:true;
+  pta: cs:ci;implicit-entries:false;distinguish-string-constants:null;reflection-inference:solar;taint-config:java-benchmarks/log4j/2.14.0/taint-config.yml;plugins:[org.example.CustomEntryPointPlugin1]; #dump-ci:true;
 onlyGenPlan: false
 keepResult:
 - $KEEP-ALL
