@@ -20,7 +20,7 @@
  * License along with Tai-e. If not, see <https://www.gnu.org/licenses/>.
  */
 
-package org.example;
+package pascal.taie.analysis.pta.plugin.taint;
 
 import pascal.taie.analysis.pta.core.heap.HeapModel;
 import pascal.taie.analysis.pta.core.solver.EmptyParamProvider;
@@ -32,8 +32,7 @@ import pascal.taie.language.classes.JClass;
 import pascal.taie.language.classes.JMethod;
 import pascal.taie.language.type.TypeSystem;
 
-public class CustomEntryPointPlugin1 implements Plugin {
-
+public class Log4jEntryPlugin implements Plugin {
     private Solver solver;
 
     private ClassHierarchy hierarchy;

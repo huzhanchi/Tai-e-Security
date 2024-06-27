@@ -1,0 +1,27 @@
+optionsFile: null
+printHelp: false
+classPath: []
+appClassPath:
+  - java-benchmarks/main
+  - java-benchmarks/java-sec-code
+  - java-benchmarks/java-sec-code/java-sec-code-1.0.0.jar
+  - java-benchmarks/java-sec-code/log4j-api-2.9.1.jar
+  - java-benchmarks/java-sec-code/log4j-core-2.9.1.jar
+  - java-benchmarks/java-sec-code/tomcat-embed-core-8.5.11.jar
+mainClass: MainEntry
+inputClasses: [MyServlet,javax.servlet.http.HttpServletRequestWrapper,javax.servlet.http.HttpServletResponseWrapper]
+javaVersion: 8
+prependJVM: false
+allowPhantom: true
+worldBuilderClass: pascal.taie.frontend.soot.SootWorldBuilder
+outputDir: output
+preBuildIR: false
+worldCacheMode: false
+scope: APP
+nativeModel: true
+planFile: null
+analyses:
+  pta: cs:ci;implicit-entries:false;distinguish-string-constants:null;reflection-inference:solar;taint-config:java-benchmarks/java-sec-code/taint-config.yml;plugins:[org.oarmour.security.ServletEntryPointPlugin]; #dump-ci:true;
+onlyGenPlan: false
+keepResult:
+- $KEEP-ALL

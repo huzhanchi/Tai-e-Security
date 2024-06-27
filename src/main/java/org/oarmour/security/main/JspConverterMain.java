@@ -1,14 +1,14 @@
-package org.example;
+package org.oarmour.security.main;
 
 import org.apache.jasper.JspC;
 
-public class JspToServletConverter {
-    public static void convert(String input, String out) {
+public class JspConverterMain {
+    public static void main(String[] args) {
         try {
             JspC jspC = new JspC();
             jspC.setUriroot(".");
-            jspC.setJspFiles(input);
-            jspC.setOutputDir(out);
+            jspC.setJspFiles(args[0]);
+            jspC.setOutputDir(args[1]);
             jspC.setCompile(true);
             jspC.setCompilerTargetVM("1.8");
             jspC.execute();

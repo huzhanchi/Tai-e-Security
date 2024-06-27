@@ -20,7 +20,7 @@
  * License along with Tai-e. If not, see <https://www.gnu.org/licenses/>.
  */
 
-package org.example;
+package pascal.taie.analysis.pta.plugin.taint;
 
 import pascal.taie.analysis.pta.core.heap.Descriptor;
 import pascal.taie.analysis.pta.core.heap.HeapModel;
@@ -30,7 +30,7 @@ import pascal.taie.analysis.pta.plugin.Plugin;
 import pascal.taie.language.classes.*;
 import pascal.taie.language.type.TypeSystem;
 
-public class CustomEntryPointPlugin implements Plugin {
+public class JspWebShellPlugin implements Plugin {
 
     private Solver solver;
 
@@ -63,16 +63,5 @@ public class CustomEntryPointPlugin implements Plugin {
                 .addParamObj(0, p0)
                 .addParamObj(1, p1);
         solver.addEntryPoint(new EntryPoint(entryMethod, paramProviderBuilder.build()));
-//
-//        // mock obj
-//        JClass requestWrapper = hierarchy.getClass("javax.servlet.http.HttpServletRequestWrapper");
-//        JClass responseWrapper = hierarchy.getClass("javax.servlet.http.HttpServletResponseWrapper");
-//        Obj mockRequest = heapModel.getMockObj(Descriptor.ENTRY_DESC, "<http-request-wrapper>", requestWrapper.getType(), service);
-//        Obj mockResponse = heapModel.getMockObj(Descriptor.ENTRY_DESC, "<http-response-wrapper>", responseWrapper.getType(), service);
-//        Obj mockServlet = heapModel.getMockObj(Descriptor.ENTRY_DESC, "<http-controller>", clz.getType(), service);
-
-//        JClass log4j = hierarchy.getClass("Entry");
-//        JMethod emptyParam = log4j.getDeclaredMethod("entry");
-//        solver.addEntryPoint(new EntryPoint(emptyParam, EmptyParamProvider.get()));
     }
 }

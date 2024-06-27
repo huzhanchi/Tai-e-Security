@@ -1,0 +1,23 @@
+import javax.servlet.*;
+import javax.servlet.http.*;
+import java.io.IOException;
+
+public class MyServlet extends HttpServlet {
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        try {
+        String mockInput = request.getParameter("mock");
+        #foreach($controller in $controllerList)
+        #set($ctrIndex= $foreach.index)
+            ${controller.className} ctr$ctrIndex = new ${controller.className}();
+        #foreach($method in $controller.mappingItems)
+            ctr${ctrIndex}.${method.name}(#foreach($arg in $method.args)
+            #if($arg=="javax.servlet.http.HttpServletRequest") request #elseif($arg=="javax.servlet.http.HttpServletResponse") response #else mockInput #end #if($foreach.hasNext),#end#end );
+        #end
+        #end
+        response.getWriter().println("Hello, this is my servlet!");
+        } catch (Exception e) {
+                      throw new RuntimeException(e);
+        }
+    }
+}
