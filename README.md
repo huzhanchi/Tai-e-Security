@@ -4,7 +4,7 @@
 
 Tai-e-Security is a vulnerability detection tool based on the Tai-e Java static detection framework, primarily designed to address some engineering adaptation issues.
 
-# Threats are Introduced from Where
+# Where are these Threats from
 
 ![vul_intro_point.png](images/vul_intro_point.png)
 
